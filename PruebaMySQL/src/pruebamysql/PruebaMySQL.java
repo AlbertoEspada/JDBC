@@ -18,7 +18,7 @@ public class PruebaMySQL {
         
         try {
             //Class.forName("com.mysql.jdbc.Driver"); // No necesario a partir del JDK 7
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo", "ejemplo", "nba");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost/ejemplo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "ejemplo", "ejemplo");
         } catch (SQLException e) {
             System.err.println("Error al acceder a la BBDD " + e.getMessage());
         }
