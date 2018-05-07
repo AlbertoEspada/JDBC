@@ -1,7 +1,6 @@
 package pruebamysql;
 
 import java.sql.*;
-
 /**
  *
  * @author Bligor
@@ -21,18 +20,28 @@ public class PruebaMySQL {
 
         /*-----------------------------------------------------------------------------------------------------*/
 
-        Departamento dep = new Departamento();
-        Departamentos depp = new Departamentos();
+        Empleados empp = new Empleados();
+        Empleado emp = new Empleado();
         
-        dep.setDnombre("DDBB");
-        dep.setLoc("CORUÑA");
+        emp.setSalario(800);
+        emp.setOficio("INFORM");
+        emp.setDept_no(20);
+        emp.setDir(7521);
+        
         
         try{
-            depp.Update(99, dep);
-            System.out.println("Realizado");
+            empp.Update(1234, emp);
+            /*System.out.println("+---------------------+-----------------+---------------+");
+        System.out.printf("|%-20s |%-16s |%-15s| %n",
+                "Dept_no", "Dnombre", "Loc");
+        System.out.println("+---------------------+-----------------+---------------+");
+        System.out.printf("|%-20s |%-16s |%-15s| %n",
+                dep.getDept_no(), dep.getDnombre(), dep.getLoc());
+        System.out.println("+---------------------+-----------------+---------------+");
+        */
         }
         catch(SQLException e){
-            System.err.println("Error al crear la instancia" + e.getMessage());
+            System.err.println("Error: " + e.getMessage());
         }
         
         /*---------------------------------------------------------------------------------*/

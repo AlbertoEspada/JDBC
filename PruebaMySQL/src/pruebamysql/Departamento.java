@@ -1,5 +1,6 @@
 package pruebamysql;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 /**
@@ -18,6 +19,10 @@ public class Departamento {
         this.dept_no = dept_no;
         this.dnombre = dnombre;
         this.loc = loc;
+    }
+
+    Departamento(int aInt, String string, String string0, int aInt0, Date date, float aFloat, float aFloat0, int aInt1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getDept_no() {
@@ -44,7 +49,7 @@ public class Departamento {
         this.loc = loc;
     }
 
-
+    
 
 }
 

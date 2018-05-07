@@ -3,6 +3,7 @@ package pruebamysql;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -38,20 +39,36 @@ public class Departamentos {
         return filas;
     }
 
-    public void Update(int dep_no, Departamento dep) throws SQLException {
+    public int Update(int dep_no, Departamento dep) throws SQLException {
         String sql = "UPDATE departamentos SET dnombre = ?, loc = ? WHERE dept_no = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
+        int filas;
         sentencia.setString(1, dep.getDnombre());
         sentencia.setString(2, dep.getLoc());
         sentencia.setInt(3, dep_no);
+        filas = sentencia.executeUpdate();
+        return filas;
     }
 
-    public Departamento Read(int dep_no) {
-
+    public Departamento Read(int dep_no) throws SQLException {
+        ResultSet rs;
+        String sql = "SELECT * FROM departamentos WHERE dept_no = ?";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setInt(1, dep_no);
+        sentencia.execute();
+        rs = sentencia.getResultSet();
+        rs.next();
+        Departamento dep = new Departamento(rs.getInt("dept_no"), rs.getString("dnombre"), rs.getString("loc"));    
+        return dep;
     }
 
-    public void Delete(int dep_no) {
-
+    public int Delete(int dep_no) throws SQLException {
+        String sql = "DELETE FROM departamentos WHERE dept_no = ? ";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        int filas;
+        sentencia.setInt(1, dep_no);
+        filas = sentencia.executeUpdate();
+        return filas;
     }
 
 }
