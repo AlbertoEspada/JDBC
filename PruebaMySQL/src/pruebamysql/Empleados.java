@@ -60,20 +60,20 @@ public class Empleados {
         return filas;
     }
 
-    public Departamento Read(int emp_no) throws SQLException {
+    public Empleado Read(int emp_no) throws SQLException {
         ResultSet rs;
-        String sql = "SELECT * FROM departamentos WHERE dept_no = ?";
+        String sql = "SELECT * FROM empleados WHERE emp_no = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         sentencia.setInt(1, emp_no);
         sentencia.execute();
         rs = sentencia.getResultSet();
         rs.next();
-        Departamento dep = new Departamento(rs.getInt("emp_no"), rs.getString("apellido"), rs.getString("oficio"), rs.getInt("dir"), rs.getDate("fecha_alt"), rs.getFloat("Salario"), rs.getFloat("comision"), rs.getInt("dept_no"));
-        return dep;
+        Empleado emp = new Empleado(rs.getInt("emp_no"), rs.getString("apellido"), rs.getString("oficio"), rs.getInt("dir"), rs.getDate("fecha_alt"), rs.getFloat("Salario"), rs.getFloat("comision"), rs.getInt("dept_no"));
+        return emp;
     }
 
     public int Delete(int emp_no) throws SQLException {
-        String sql = "DELETE FROM departamentos WHERE emp_no = ? ";
+        String sql = "DELETE FROM empleados WHERE emp_no = ? "; 
         PreparedStatement sentencia = conexion.prepareStatement(sql);
         int filas;
         sentencia.setInt(1, emp_no);
