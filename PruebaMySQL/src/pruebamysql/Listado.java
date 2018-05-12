@@ -15,7 +15,9 @@ public class Listado {
     public Listado() {
     }
 
+    /*Listado de la Tabla departamentos*/
     public void Departamentos() throws SQLException {
+        /*Objetos Vacios*/
         Departamentos depp = new Departamentos();
         Departamento dep = new Departamento();
 
@@ -25,7 +27,8 @@ public class Listado {
         System.out.printf("%-2s %-3s %n %-5s", " ", "----------------------------------------------------------------", " ");
 
         int cases11 = sc.nextInt();
-
+        
+        /*Listado de todos los Datos de la Tabla*/
         if (cases11 == 1) {
             ArrayList<Departamento> deps = new ArrayList<>();
 
@@ -42,15 +45,18 @@ public class Listado {
                         deps.get(i).getDnombre(),
                         deps.get(i).getLoc());
             }
-            System.out.println("+----------------+----------------+----------------+");
-        } else if (cases11 == 2) {
+            System.out.printf("%s %n %n", "+----------------+----------------+----------------+");
+        } 
+        
+        /*Listar un Departamento por Numero*/
+        else if (cases11 == 2) {
 
             int num;
-            System.out.printf("%-2s %s", " ", "Numero de Departamento: ");
+            System.out.printf("%n %-2s %s", " ", "Numero de Departamento: ");
+            
             num = sc.nextInt();
-            System.out.printf("%n");
-
             dep = depp.ReadOne(num);
+            
             System.out.println("\n");
 
             System.out.printf("%s %n", "+----------------+----------------+----------------+");
@@ -61,12 +67,13 @@ public class Listado {
                     dep.getDept_no(),
                     dep.getDnombre(),
                     dep.getLoc());
-            System.out.println("+----------------+----------------+----------------+");
+            System.out.printf("%s %n %n", "+----------------+----------------+----------------+");
 
         }
     }
 
     public void Empleados() throws SQLException {
+        /*Objetos Vacios*/
         Empleados empp = new Empleados();
         Empleado emp = new Empleado();
 
@@ -77,6 +84,7 @@ public class Listado {
 
         int cases11 = sc.nextInt();
 
+        /*Listar todos los Datos de la tabla Empleados*/
         if (cases11 == 1) {
             ArrayList<Empleado> emps = new ArrayList<>();
 
@@ -99,14 +107,16 @@ public class Listado {
                         emps.get(i).getComision(),
                         emps.get(i).getDept_no());
             }
-            System.out.println("+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+");
-        } else if (cases11 == 2) {
+            System.out.printf("%s %n %n", "+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+");
+        } 
+        
+        /*Listar un Empleado por Numero*/
+        else if (cases11 == 2) {
 
             int num;
-            System.out.printf("%-2s %s", " ", "Numero de Empleado: ");
+            System.out.printf("%n %-2s %s", " ", "Numero de Empleado: ");
+            
             num = sc.nextInt();
-            System.out.printf("%n");
-
             emp = empp.ReadOne(num);
 
             System.out.println("\n");
@@ -124,7 +134,7 @@ public class Listado {
                     emp.getSalario(),
                     emp.getComision(),
                     emp.getDept_no());
-            System.out.println("+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+");
+            System.out.printf("%s %n %n", "+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+");
         }
     }
 }

@@ -8,15 +8,17 @@ import java.util.Scanner;
  * @author bligor
  */
 public class Buscar {
-
     Scanner sc = new Scanner(System.in);
 
+    /*Buscar un Departamento por el nombre*/
     public void Departamento() throws SQLException {
+        /*Objetos Vacios*/
         Departamentos depp = new Departamentos();
         Departamento dep = new Departamento();
 
+        /*Nombre del Departamento*/
         String nom;
-        System.out.printf("%-2s %s", " ", "Numero de Departamento: ");
+        System.out.printf("%-2s %s", " ", "Nombre de Departamento: ");
         nom = sc.nextLine();
         System.out.printf("%n");
 
@@ -30,16 +32,19 @@ public class Buscar {
                 dep.getDept_no(),
                 dep.getDnombre(),
                 dep.getLoc());
-        System.out.println("+----------------+----------------+----------------+");
+        System.out.printf("%s %n %n", "+----------------+----------------+----------------+");
 
     }
 
+    /*Buscar un Empleado por Nombre*/
     public void Empleado() throws SQLException {
+        /*Objetos Vacios*/
         Empleados empp = new Empleados();
         Empleado emp = new Empleado();
 
+        /*Nombre del Empleado*/
         String nom;
-        System.out.printf("%-2s %s", " ", "Numero de Empleado: ");
+        System.out.printf("%-2s %s", " ", "Nombre de Empleado: ");
         nom = sc.nextLine();
         System.out.printf("%n");
 
@@ -58,7 +63,7 @@ public class Buscar {
                 emp.getSalario(),
                 emp.getComision(),
                 emp.getDept_no());
-        System.out.println("+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+");
+        System.out.printf("%s %n %n", "+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+");
 
     }
 }

@@ -11,6 +11,7 @@ public class Departamento {
     private String dnombre;
     private String loc;
 
+    /*Constructores*/
     public Departamento() {
     }
     
@@ -20,10 +21,12 @@ public class Departamento {
         this.loc = loc;
     }
 
+    
     Departamento(int aInt, String string, String string0, int aInt0, Date date, float aFloat, float aFloat0, int aInt1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /*Getters y Setters*/
     public int getDept_no() {
         return dept_no;
     }

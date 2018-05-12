@@ -15,6 +15,7 @@ public class Empleado {
     private float comision;
     private int dept_no;
 
+    /*Constructores*/
     public Empleado() {
     }
 
@@ -29,6 +30,7 @@ public class Empleado {
         this.dept_no = dept_no;
     }
 
+    /*Getters y Setters*/
     public int getEmp_no() {
         return emp_no;
     }
