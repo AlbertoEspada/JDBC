@@ -50,7 +50,21 @@ public class Departamentos {
         return filas;
     }
 
-    public Departamento Read(int dep_no) throws SQLException {
+    public ArrayList<Departamento> Read() throws SQLException {
+        ResultSet rs;
+        ArrayList<Departamento> listado = new ArrayList<>();
+        String sql = "SELECT * FROM departamentos";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.execute();
+        rs = sentencia.getResultSet();
+        while(rs.next()){
+        Departamento dep = new Departamento(rs.getInt("dept_no"), rs.getString("dnombre"), rs.getString("loc"));   
+        listado.add(dep);
+        }
+        return listado;
+    }
+    
+    public Departamento ReadOne(int dep_no) throws SQLException {
         ResultSet rs;
         String sql = "SELECT * FROM departamentos WHERE dept_no = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -62,6 +76,18 @@ public class Departamentos {
         return dep;
     }
 
+    public Departamento SearchOne(String dnombre) throws SQLException {
+        ResultSet rs;
+        String sql = "SELECT * FROM departamentos WHERE dnombre = ?";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, dnombre);
+        sentencia.execute();
+        rs = sentencia.getResultSet();
+        rs.next();
+        Departamento dep = new Departamento(rs.getInt("dept_no"), rs.getString("dnombre"), rs.getString("loc"));    
+        return dep;
+    }
+    
     public int Delete(int dep_no) throws SQLException {
         String sql = "DELETE FROM departamentos WHERE dept_no = ? ";
         PreparedStatement sentencia = conexion.prepareStatement(sql);

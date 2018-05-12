@@ -60,7 +60,21 @@ public class Empleados {
         return filas;
     }
 
-    public Empleado Read(int emp_no) throws SQLException {
+    public ArrayList<Empleado> Read() throws SQLException {
+        ResultSet rs;
+        ArrayList<Empleado> listado = new ArrayList<>();
+        String sql = "SELECT * FROM empleados";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.execute();
+        rs = sentencia.getResultSet();
+        while(rs.next()){
+        Empleado emp = new Empleado(rs.getInt("emp_no"), rs.getString("apellido"), rs.getString("oficio"), rs.getInt("dir"), rs.getDate("fecha_alt"), rs.getFloat("salario"), rs.getFloat("comision"), rs.getInt("dept_no"));   
+        listado.add(emp);
+        }
+        return listado;
+    }
+    
+    public Empleado ReadOne(int emp_no) throws SQLException {
         ResultSet rs;
         String sql = "SELECT * FROM empleados WHERE emp_no = ?";
         PreparedStatement sentencia = conexion.prepareStatement(sql);
@@ -68,7 +82,19 @@ public class Empleados {
         sentencia.execute();
         rs = sentencia.getResultSet();
         rs.next();
-        Empleado emp = new Empleado(rs.getInt("emp_no"), rs.getString("apellido"), rs.getString("oficio"), rs.getInt("dir"), rs.getDate("fecha_alt"), rs.getFloat("Salario"), rs.getFloat("comision"), rs.getInt("dept_no"));
+        Empleado emp = new Empleado(rs.getInt("emp_no"), rs.getString("apellido"), rs.getString("oficio"), rs.getInt("dir"), rs.getDate("fecha_alt"), rs.getFloat("salario"), rs.getFloat("comision"), rs.getInt("dept_no"));   
+        return emp;
+    }
+    
+    public Empleado SearchOne(String apellido) throws SQLException {
+        ResultSet rs;
+        String sql = "SELECT * FROM empleados WHERE apellido = ?";
+        PreparedStatement sentencia = conexion.prepareStatement(sql);
+        sentencia.setString(1, apellido);
+        sentencia.execute();
+        rs = sentencia.getResultSet();
+        rs.next();
+        Empleado emp = new Empleado(rs.getInt("emp_no"), rs.getString("apellido"), rs.getString("oficio"), rs.getInt("dir"), rs.getDate("fecha_alt"), rs.getFloat("salario"), rs.getFloat("comision"), rs.getInt("dept_no"));   
         return emp;
     }
 

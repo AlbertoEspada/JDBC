@@ -4,7 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.*;
+import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -12,7 +15,7 @@ import java.time.LocalDate;
  */
 public class PruebaMySQL {
 
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws SQLException, IOException, ParseException {
 
         /*--------------------------Conexion--------------------------------------------*/
         Connection conexion = null;
@@ -25,7 +28,7 @@ public class PruebaMySQL {
         }
 
         /*--------------------------------------------------------------------------------*/
-        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        Scanner sc = new Scanner(System.in);
 
         //Objetos Vacios
         //Empleados    
@@ -34,6 +37,11 @@ public class PruebaMySQL {
         //Departamentos
         Departamento dep = new Departamento();
         Departamentos depp = new Departamentos();
+        //Imprimir
+        Listado li = new Listado();
+        Buscar bs = new Buscar();
+        //Crear
+        Create cr = new Create();
 
         System.out.printf("%-50s %n %n", "Elija su opcion:");
         System.out.printf("%-2s %-3s %s %n", " ", "(1)", "Listar");
@@ -42,8 +50,7 @@ public class PruebaMySQL {
         System.out.printf("%-2s %-3s %s %n", " ", "(4)", "Borrar");
         System.out.printf("%-2s %-3s %n %-5s", " ", "----------------------------------------------------------------", " ");
 
-        String cas = bf.readLine();
-        int cases = Integer.parseInt(cas);
+        int cases = sc.nextInt();
 
         System.out.printf("%n");
 
@@ -54,22 +61,31 @@ public class PruebaMySQL {
                 System.out.printf("%-2s %-3s %s %n", " ", "(2)", "Empleado");
                 System.out.printf("%-2s %-3s %n %-5s", " ", "----------------------------------------------------------------", " ");
 
-                String cas1 = bf.readLine();
-                int cases1 = Integer.parseInt(cas);
+                int cases1 = sc.nextInt();
+                System.out.printf("%n");
 
                 if (cases1 == 1) {
-                    System.out.printf("Numero de departamento a listar: ");
-                    depp.Read(cases1);
+                    li.Departamentos();
+                } else if (cases1 == 2) {
+                    li.Empleados();
                 }
                 break;
+
             case 2:
                 System.out.printf("%-3s %n %n", "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
                 System.out.printf("%-2s %-3s %s %n", " ", "(1)", "Departamento");
                 System.out.printf("%-2s %-3s %s %n", " ", "(2)", "Empleado");
                 System.out.printf("%-2s %-3s %n %-5s", " ", "----------------------------------------------------------------", " ");
 
-                String cas2 = bf.readLine();
-                int cases2 = Integer.parseInt(cas);
+                int cases2 = sc.nextInt();
+                System.out.printf("%n");
+
+                if (cases2 == 1) {
+                    bs.Departamento();
+                } else if (cases2 == 2) {
+                    bs.Empleado();
+                }
+
                 break;
             case 3:
                 System.out.printf("%-3s %n %n", "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
@@ -77,8 +93,15 @@ public class PruebaMySQL {
                 System.out.printf("%-2s %-3s %s %n", " ", "(2)", "Empleado");
                 System.out.printf("%-2s %-3s %n %-5s", " ", "----------------------------------------------------------------", " ");
 
-                String cas3 = bf.readLine();
-                int cases3 = Integer.parseInt(cas);
+                int cases3 = sc.nextInt();
+                System.out.printf("%n");
+
+                if (cases3 == 1) {
+                    cr.Departamento();
+                } else if (cases3 == 2) {
+                    cr.Empleado();
+                }
+                
                 break;
             case 4:
                 System.out.printf("%-3s %n %n", "_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_");
@@ -86,14 +109,28 @@ public class PruebaMySQL {
                 System.out.printf("%-2s %-3s %s %n", " ", "(2)", "Empleado");
                 System.out.printf("%-2s %-3s %n %-5s", " ", "----------------------------------------------------------------", " ");
 
+                int cases4 = sc.nextInt();
+                System.out.printf("%n");
                 
-                String cas4 = bf.readLine();
-                int cases4 = Integer.parseInt(cas);
+                if (cases4 == 1) {
+                    System.out.printf("%-2s %s", " ", "Numero de Departamento: ");
+                    int ndep = sc.nextInt();
+                    System.out.printf("%n");
+                    depp.Delete(ndep);
+                } else if (cases4 == 2) {
+                    System.out.printf("%-2s %s", " ", "Numero de Empleado: ");
+                    int nemp = sc.nextInt();
+                    System.out.printf("%n");
+                    empp.Delete(nemp);
+                }
+
                 break;
 
         }
         /*---------------------------------------------------------------------------------*/
         conexion.close();
-        System.out.println("Conexion Cerrada");
+
+        System.out.println(
+                "Conexion Cerrada");
     }
 }
