@@ -1,4 +1,4 @@
-# JDBC
+# Acceso a Base de Datos desde JAVA
 
   ## Descripcion
   Esta es una applicacion que accede una Base de Datos y que hace las acciones basicas de los metodos CRUD tradicionales.
@@ -32,3 +32,10 @@
   Para borrar un departamento lo unico que tendremos que hacer es conocer el nº del departamento que queremos borrar para borrar ese departamento.
   #### Empleado
   Al igual que con departamento, lo unico que tendremos que saber es el numero del empleado que queremos borrar para borrarlo.
+
+  ## Author
+
+  - *Alberto Espada Márquez*
+
+  ## License
+  Copyright © 2017, Alberto Espada. Released under the _Personal License_.
